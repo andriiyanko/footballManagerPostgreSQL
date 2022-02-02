@@ -95,5 +95,27 @@ public class TeamController {
         }
     }
 
+    @DeleteMapping("/teams/{id}")
+    public ResponseEntity<HttpStatus> deleteTeam(@PathVariable("id") int id){
+        try {
+            teamService.deleteTeamById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/teams")
+    public ResponseEntity<HttpStatus> deleteAllTeams(){
+        try {
+            teamService.deleteAllTeams();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
 
 }

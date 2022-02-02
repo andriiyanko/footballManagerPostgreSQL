@@ -11,4 +11,6 @@ public interface ITeamService {
     Optional<Team> findTeamById (Integer id);
     Team saveTeam(Team team);
     List<Team> findTeamByCountry (String country);
+    void deleteTeamById(Integer id);
+    void deleteAllTeams();
 }

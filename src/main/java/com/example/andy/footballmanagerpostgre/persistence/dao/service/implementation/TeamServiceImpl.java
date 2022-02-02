@@ -44,5 +44,13 @@ public class TeamServiceImpl implements ITeamService {
         return teamRepository.save(team);
     }
 
+    @Override
+    public void deleteTeamById(Integer id) {
+        teamRepository.deleteById(id);
+    }
 
+    @Override
+    public void deleteAllTeams() {
+        teamRepository.deleteAll();
+    }
 }
