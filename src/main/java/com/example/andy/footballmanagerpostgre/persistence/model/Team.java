@@ -18,4 +18,10 @@ public class Team {
     private String town;
     private int balance;
 
+    public Team(String name, String country, String town, int balance) {
+        this.name = name;
+        this.country = country;
+        this.town = town;
+        this.balance = balance;
+    }
 }

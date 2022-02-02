@@ -4,13 +4,24 @@ import com.example.andy.footballmanagerpostgre.persistence.dao.repositories.Team
 import com.example.andy.footballmanagerpostgre.persistence.dao.service.interfaces.ITeamService;
 import com.example.andy.footballmanagerpostgre.persistence.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class TeamServiceImpl implements ITeamService {
 
-    @Autowired
     private TeamRepository teamRepository;
+
+    @Autowired
+    public void setTeamRepository(TeamRepository teamRepository) {
+        this.teamRepository = teamRepository;
+    }
+
+    @Override
+    public Iterable<Team> findAllTeams() {
+        return teamRepository.findAll();
+    }
 
     @Override
     public Team findTeamByName(String name) {
@@ -20,5 +31,10 @@ public class TeamServiceImpl implements ITeamService {
     @Override
     public Optional<Team> findTeamById(Integer id) {
         return teamRepository.findById(id);
+    }
+
+    @Override
+    public Team saveTeam(Team team) {
+        return teamRepository.save(team);
     }
 }
