@@ -97,6 +97,18 @@ public class TeamController {
         }
     }
 
+    @PutMapping("/teams/{id}")
+    public ResponseEntity<Team> updateTeam(@PathVariable("id") int id, @Validated @RequestBody Team team){
+        Team _team = teamService.findTeamById(id).orElseThrow(() -> new ResourceNotFoundException("Not found Team with id " + id));
+
+        _team.setName(team.getName());
+        _team.setCountry(team.getCountry());
+        _team.setTown(team.getTown());
+        _team.setBalance(team.getBalance());
+
+        return new ResponseEntity<>(teamService.saveTeam(_team), HttpStatus.OK);
+    }
+
     @DeleteMapping("/teams/{id}")
     public ResponseEntity<HttpStatus> deleteTeam(@PathVariable("id") int id){
         try {
