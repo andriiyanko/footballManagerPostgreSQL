@@ -1,5 +1,6 @@
 package com.example.andy.footballmanagerpostgre.controller;
 
+import com.example.andy.footballmanagerpostgre.exceptions.ResourceNotFoundException;
 import com.example.andy.footballmanagerpostgre.persistence.dao.service.interfaces.ITeamService;
 import com.example.andy.footballmanagerpostgre.persistence.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +43,17 @@ public class TeamController {
 
     @GetMapping("/teams/{id}")
     public ResponseEntity<Team> getTeamById(@PathVariable("id") int id){
-        Optional<Team> teamData = teamService.findTeamById(id);
+      /*  Optional<Team> teamData = teamService.findTeamById(id);
         if (teamData.isPresent()){
             return new ResponseEntity<>(teamData.get(), HttpStatus.OK);
         }
         else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        }*/
+
+        Team teamData = teamService.findTeamById(id).orElseThrow(() -> new ResourceNotFoundException("Not found Team with id " + id));
+        return new ResponseEntity<>(teamData, HttpStatus.OK);
+
     }
 
     @PostMapping("/teams")
