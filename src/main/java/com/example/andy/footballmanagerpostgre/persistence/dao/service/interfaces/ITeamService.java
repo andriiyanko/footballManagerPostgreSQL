@@ -2,11 +2,13 @@ package com.example.andy.footballmanagerpostgre.persistence.dao.service.interfac
 
 import com.example.andy.footballmanagerpostgre.persistence.model.Team;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ITeamService {
     Iterable<Team> findAllTeams();
-    Team findTeamByName (String name);
+    List<Team> findTeamByName (String name);
     Optional<Team> findTeamById (Integer id);
     Team saveTeam(Team team);
+    List<Team> findTeamByCountry (String country);
 }

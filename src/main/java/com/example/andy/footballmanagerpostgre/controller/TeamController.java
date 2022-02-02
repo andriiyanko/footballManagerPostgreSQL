@@ -61,4 +61,34 @@ public class TeamController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/teams/name/{name}")
+    public ResponseEntity<List<Team>> getTeamByName(@PathVariable("name") String name){
+        try {
+            List<Team> teams = teamService.findTeamByName(name);
+            if (teams.isEmpty()){
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(teams, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/teams/country/{country}")
+    public ResponseEntity<List<Team>> getTeamByCountry(@PathVariable("country") String country){
+        try {
+            List<Team> teams = teamService.findTeamByCountry(country);
+            if (teams.isEmpty()){
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(teams, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 }
