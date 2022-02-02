@@ -52,7 +52,7 @@ public class TeamController {
     }
 
     @PostMapping("/teams")
-    public ResponseEntity<Team> createTeam(HttpServletRequest httpServletRequest, @RequestBody Team team){
+    public ResponseEntity<Team> createTeam(@RequestBody Team team){
         try {
             Team _team = teamService.saveTeam(new Team(team.getName(), team.getCountry(), team.getTown(), team.getBalance()));
             return new ResponseEntity<>(_team,HttpStatus.CREATED);
