@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -57,7 +59,7 @@ public class TeamController {
     }
 
     @PostMapping("/teams")
-    public ResponseEntity<Team> createTeam(@RequestBody Team team){
+    public ResponseEntity<Team> createTeam(@Validated @RequestBody Team team){
         try {
             Team _team = teamService.saveTeam(new Team(team.getName(), team.getCountry(), team.getTown(), team.getBalance()));
             return new ResponseEntity<>(_team,HttpStatus.CREATED);
