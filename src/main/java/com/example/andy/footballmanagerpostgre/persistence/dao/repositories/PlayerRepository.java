@@ -13,4 +13,5 @@ import java.util.List;
 public interface PlayerRepository extends CrudRepository<Player, Integer> {
     List<Player> findPlayerByTeamId (Integer teamId);
     List<Player> findPlayerByTeamName (String teamName);
+    List<Player> findPlayerByFirstNameAndLastName (String firstName, String lastName);
 }

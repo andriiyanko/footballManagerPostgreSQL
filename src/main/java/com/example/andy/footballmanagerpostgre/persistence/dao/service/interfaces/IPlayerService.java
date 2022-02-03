@@ -8,5 +8,7 @@ public interface IPlayerService {
     List<Player> findPlayerByTeamId(Integer teamId);
     List<Player> findPlayerByTeamName (String teamName);
     Iterable<Player> findAllPLayers();
+    List<Player> findPlayerByFirstNameAndLastName (String firstName, String lastName);
+    Player savePLayer (Player player);
 
 }

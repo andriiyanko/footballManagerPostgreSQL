@@ -32,4 +32,14 @@ public class PlayerServiceImpl implements IPlayerService {
     public Iterable<Player> findAllPLayers() {
         return playerRepository.findAll();
     }
+
+    @Override
+    public List<Player> findPlayerByFirstNameAndLastName(String firstName, String lastName) {
+        return playerRepository.findPlayerByFirstNameAndLastName(firstName, lastName);
+    }
+
+    @Override
+    public Player savePLayer(Player player) {
+        return playerRepository.save(player);
+    }
 }
