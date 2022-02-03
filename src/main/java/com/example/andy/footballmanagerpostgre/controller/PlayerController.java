@@ -74,6 +74,13 @@ public class PlayerController {
         }
     }
 
+    @GetMapping("/players/{id}")
+    public ResponseEntity<Player> getPlayerById(@PathVariable("id") Integer id){
+        Player player = playerService.findPlayerById(id).orElseThrow(() -> new ResourceNotFoundException("Not found Player with id" + id));
+        return new ResponseEntity<>(player,HttpStatus.OK);
+    }
+
+
     @GetMapping("/players/{firstName}/{lastName}")
     public ResponseEntity<List<Player>> getPlayersByFirstNameAndLastName(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName){
         try {
@@ -97,4 +104,30 @@ public class PlayerController {
 
         return new ResponseEntity<>(player, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/players/{id}")
+    public ResponseEntity<HttpStatus> deletePlayerById(@PathVariable("id") Integer id){
+        try{
+            playerService.deletePlayerById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/players")
+    public ResponseEntity<HttpStatus> deleteAllPlayers(){
+        try {
+            playerService.deleteAllPlayers();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
+
 }

@@ -3,6 +3,7 @@ package com.example.andy.footballmanagerpostgre.persistence.dao.service.interfac
 import com.example.andy.footballmanagerpostgre.persistence.model.Player;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IPlayerService {
     List<Player> findPlayerByTeamId(Integer teamId);
@@ -10,5 +11,8 @@ public interface IPlayerService {
     Iterable<Player> findAllPLayers();
     List<Player> findPlayerByFirstNameAndLastName (String firstName, String lastName);
     Player savePLayer (Player player);
+    Optional<Player> findPlayerById (Integer id);
+    void deletePlayerById(Integer id);
+    void deleteAllPlayers();
 
 }

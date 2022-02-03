@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlayerServiceImpl implements IPlayerService {
@@ -16,6 +17,11 @@ public class PlayerServiceImpl implements IPlayerService {
     @Autowired
     public void setPlayerRepository(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
+    }
+
+    @Override
+    public Optional<Player> findPlayerById(Integer id) {
+        return playerRepository.findById(id);
     }
 
     @Override
@@ -41,5 +47,15 @@ public class PlayerServiceImpl implements IPlayerService {
     @Override
     public Player savePLayer(Player player) {
         return playerRepository.save(player);
+    }
+
+    @Override
+    public void deletePlayerById(Integer id) {
+        playerRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteAllPlayers() {
+        playerRepository.deleteAll();
     }
 }
