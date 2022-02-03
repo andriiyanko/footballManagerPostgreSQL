@@ -8,6 +8,7 @@ import com.example.andy.footballmanagerpostgre.persistence.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -96,7 +97,7 @@ public class PlayerController {
     }
 
     @PostMapping("/teams/{teamId}/players")
-    public ResponseEntity<Player> createPlayer (@PathVariable("teamId") Integer teamId, @RequestBody Player playerRequest){
+    public ResponseEntity<Player> createPlayer (@PathVariable("teamId") Integer teamId, @Validated @RequestBody Player playerRequest){
         Player player = teamService.findTeamById(teamId).map(team -> {
             playerRequest.setTeam(team);
             return playerService.savePLayer(playerRequest);
@@ -106,7 +107,7 @@ public class PlayerController {
     }
 
     @PutMapping("/players/{id}")
-    public ResponseEntity<Player> updatePlayer (@PathVariable("id") Integer id, @RequestBody Player playerRequest){
+    public ResponseEntity<Player> updatePlayer (@PathVariable("id") Integer id, @Validated @RequestBody Player playerRequest){
         Player player = playerService.findPlayerById(id).orElseThrow(() -> new ResourceNotFoundException("Not found player with id" + id));
 
         player.setFirstName(playerRequest.getFirstName());
