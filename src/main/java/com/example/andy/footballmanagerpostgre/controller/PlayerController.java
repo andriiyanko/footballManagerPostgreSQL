@@ -105,6 +105,19 @@ public class PlayerController {
         return new ResponseEntity<>(player, HttpStatus.CREATED);
     }
 
+    @PutMapping("/players/{id}")
+    public ResponseEntity<Player> updatePlayer (@PathVariable("id") Integer id, @RequestBody Player playerRequest){
+        Player player = playerService.findPlayerById(id).orElseThrow(() -> new ResourceNotFoundException("Not found player with id" + id));
+
+        player.setFirstName(playerRequest.getFirstName());
+        player.setLastName(playerRequest.getLastName());
+        player.setBirthDate(playerRequest.getBirthDate());
+        player.setStartCareer(playerRequest.getStartCareer());
+
+        return new ResponseEntity<>(playerService.savePLayer(player), HttpStatus.OK);
+    }
+
+
     @DeleteMapping("/players/{id}")
     public ResponseEntity<HttpStatus> deletePlayerById(@PathVariable("id") Integer id){
         try{

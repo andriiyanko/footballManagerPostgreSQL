@@ -12,6 +12,7 @@ public interface IPlayerService {
     List<Player> findPlayerByFirstNameAndLastName (String firstName, String lastName);
     Player savePLayer (Player player);
     Optional<Player> findPlayerById (Integer id);
+
     void deletePlayerById(Integer id);
     void deleteAllPlayers();
 
