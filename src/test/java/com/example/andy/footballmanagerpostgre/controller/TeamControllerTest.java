@@ -76,7 +76,7 @@ public class TeamControllerTest {
     }
 
     @Test
-    public void givenTeamInRequestBody_thenReturnTeamInResponse() {
+    public void givenTeam_SaveAndThenReturnTeam() {
         try {
             Team team = new Team(1,"FC Barcelona", "Spain", "Barcelona", 350_000_000);
             Mockito.when(teamService.saveTeam(team)).thenReturn(team);
@@ -93,7 +93,7 @@ public class TeamControllerTest {
     }
 
     @Test
-    public void givenTeamName_SaveAndThenReturnTeam() {
+    public void givenTeamName_thenReturnTeam() {
         String teamName = "FC Milan";
         try {
             Mockito.when(teamService.findTeamByName(teamName))
