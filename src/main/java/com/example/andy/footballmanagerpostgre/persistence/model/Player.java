@@ -46,7 +46,12 @@ public class Player implements Serializable {
     @JsonBackReference
     private Team team;
 
-
-
+    public Player(int id, String firstName, String lastName, LocalDate birthDate, LocalDate startCareer) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.startCareer = startCareer;
+    }
 
 }

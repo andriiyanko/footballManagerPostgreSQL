@@ -49,6 +49,14 @@ public class Team implements Serializable {
         this.balance = balance;
     }
 
+    public Team(int id, String name, String country, String town, int balance) {
+        this.id = id;
+        this.name = name;
+        this.country = country;
+        this.town = town;
+        this.balance = balance;
+    }
+
     public void addPlayer(Player player){
         players.add(player);
     }
